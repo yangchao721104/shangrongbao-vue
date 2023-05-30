@@ -1,8 +1,53 @@
 [
   {
-    "name": "",
-    "path": "",
-    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\node_modules\\\\@nuxt\\\\vue-app\\\\template\\\\pages\\\\index.vue",
-    "_name": "_499571bb"
+    "name": "about",
+    "path": "/about",
+    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\about.vue",
+    "chunkName": "pages/about",
+    "_name": "_b0b5688a"
+  },
+  {
+    "name": "lend",
+    "path": "/lend",
+    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\lend\\\\index.vue",
+    "chunkName": "pages/lend/index",
+    "_name": "_612a339e"
+  },
+  {
+    "name": "user",
+    "path": "/user",
+    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\user.vue",
+    "chunkName": "pages/user",
+    "children": [
+      {
+        "name": "user-user1",
+        "path": "user1",
+        "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\user\\\\user1.vue",
+        "chunkName": "pages/user/user1",
+        "_name": "_c5b3766e"
+      },
+      {
+        "name": "user-user2",
+        "path": "user2",
+        "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\user\\\\user2.vue",
+        "chunkName": "pages/user/user2",
+        "_name": "_c597476c"
+      }
+    ],
+    "_name": "_51fe3be6"
+  },
+  {
+    "name": "lend-id",
+    "path": "/lend/:id",
+    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\lend\\\\_id.vue",
+    "chunkName": "pages/lend/_id",
+    "_name": "_1fa27e4e"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "E:\\\\work\\\\shangrongbao\\\\vue\\\\shangrongbao-vue\\\\nuxt-app\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_7145b300"
   }
 ]

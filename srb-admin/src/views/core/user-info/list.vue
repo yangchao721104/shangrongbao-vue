@@ -1,5 +1,31 @@
 <template>
   <div class="app-container">
+    <!--查询表单-->
+    <el-form :inline="true" class="demo-form-inline">
+      <el-form-item label="手机号">
+        <el-input v-model="searchObj.mobile" placeholder="手机号" />
+      </el-form-item>
+
+      <el-form-item label="用户类型">
+        <el-select v-model="searchObj.userType" placeholder="请选择" clearable>
+          <el-option label="投资人" value="1" />
+          <el-option label="借款人" value="2" />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="用户状态">
+        <el-select v-model="searchObj.status" placeholder="请选择" clearable>
+          <el-option label="正常" value="1" />
+          <el-option label="锁定" value="0" />
+        </el-select>
+      </el-form-item>
+
+      <el-button type="primary" icon="el-icon-search" @click="fetchData()">
+        查询
+      </el-button>
+      <el-button type="default" @click="resetData()">清空</el-button>
+    </el-form>
+
     <!-- 列表 -->
     <el-table :data="list" border stripe>
       <el-table-column label="#" width="50">
@@ -58,7 +84,7 @@
       :current-page="page"
       :total="total"
       :page-size="limit"
-      :page-sizes="[2, 1]"
+      :page-sizes="[3, 2, 1]"
       style="padding: 30px 0; "
       layout="total, sizes, prev, pager, next, jumper"
       @size-change="changePageSize"
@@ -95,6 +121,24 @@ export default {
           this.list = response.data.pageModel.records
           this.total = response.data.pageModel.total
         })
+    },
+
+    // 每页记录数改变，size：回调参数，表示当前选中的“每页条数”
+    changePageSize(size) {
+      this.limit = size
+      this.fetchData()
+    },
+
+    // 改变页码，page：回调参数，表示当前选中的“页码”
+    changeCurrentPage(page) {
+      this.page = page
+      this.fetchData()
+    },
+
+    // 重置表单
+    resetData() {
+      this.searchObj = {}
+      this.fetchData()
     }
   }
 }

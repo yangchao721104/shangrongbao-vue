@@ -78,13 +78,33 @@
           </el-tag>
         </template>
       </el-table-column>
+      <el-table-column label="操作" align="center" width="200">
+        <template slot-scope="scope">
+          <el-button
+            v-if="scope.row.status == 1"
+            type="primary"
+            size="mini"
+            @click="lock(scope.row.id, 0)"
+          >
+            锁定
+          </el-button>
+          <el-button
+            v-else
+            type="danger"
+            size="mini"
+            @click="lock(scope.row.id, 1)"
+          >
+            解锁
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
     <!-- 分页组件 -->
     <el-pagination
       :current-page="page"
       :total="total"
       :page-size="limit"
-      :page-sizes="[3, 2, 1]"
+      :page-sizes="[5, 10, 30]"
       style="padding: 30px 0; "
       layout="total, sizes, prev, pager, next, jumper"
       @size-change="changePageSize"
@@ -139,6 +159,14 @@ export default {
     resetData() {
       this.searchObj = {}
       this.fetchData()
+    },
+
+    // 锁定和解锁
+    lock(id, status) {
+      userInfoApi.lock(id, status).then(response => {
+        this.$message.success(response.message)
+        this.fetchData()
+      })
     }
   }
 }

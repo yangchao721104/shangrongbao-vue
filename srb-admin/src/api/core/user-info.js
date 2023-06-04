@@ -8,5 +8,11 @@ export default {
       // data: searchObj //在请求体中传递json
       params: searchObj
     })
+  },
+  lock(id, status) {
+    return request({
+      url: `/admin/core/userInfo/lock/${id}/${status}`,
+      method: 'put'
+    })
   }
 }

@@ -53,6 +53,17 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- 分页组件 -->
+    <el-pagination
+      :current-page="page"
+      :total="total"
+      :page-size="limit"
+      :page-sizes="[2, 1]"
+      style="padding: 30px 0; "
+      layout="total, sizes, prev, pager, next, jumper"
+      @size-change="changePageSize"
+      @current-change="changeCurrentPage"
+    />
   </div>
 </template>
 

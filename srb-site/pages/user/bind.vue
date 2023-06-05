@@ -99,6 +99,13 @@ export default {
           confirmButtonText: '立即前往',
           callback: (action) => {
             //TODO 提交用户信息
+            if (action === 'confirm') {
+              this.$axios
+                .$post('/api/core/userBind/auth/bind', this.userBind)
+                .then((response) => {
+                  document.write(response.data.formStr)
+                })
+            }
           },
         }
       )

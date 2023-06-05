@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head> </head>
+  <body>
+    <form
+      name="form"
+      action="http://localhost:9999/userBind/BindAgreeUserV2"
+      method="post"
+    >
+      <!-- 参数 -->
+      <input type="text" name="mobile" value="13900000000" />
+      <input type="text" name="sign" value="123456" />
+    </form>
+    <script>
+      document.form.submit()
+    </script>
+  </body>
+</html>

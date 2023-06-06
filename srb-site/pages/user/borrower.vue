@@ -191,6 +191,12 @@
           >
           </el-alert>
 
+          <NuxtLink to="/user/apply" v-if="borrowerStatus === 2">
+            <el-button style="margin-top:20px;" type="success">
+              我要借款
+            </el-button>
+          </NuxtLink>
+
           <el-alert
             v-if="borrowerStatus === -1"
             title="您的认证审批未通过"
@@ -210,7 +216,7 @@ export default {
     let BASE_API = process.env.BASE_API
 
     return {
-      active: 0, //步骤
+      active: null, //步骤
       borrowerStatus: null,
       submitBtnDisabled: false,
       //借款人信息

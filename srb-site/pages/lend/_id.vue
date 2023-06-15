@@ -399,9 +399,22 @@ export default {
     //通过lendId获取标的详情信息
     let response = await $axios.$get('/api/core/lend/show/' + lendId)
 
+    //投资记录
+    let responseLendItemList = await $axios.$get(
+      '/api/core/lendItem/list/' + lendId
+    )
+
+    //还款计划
+    let responseLendReturnList = await $axios.$get(
+      '/api/core/lendReturn/list/' + lendId
+    )
+
     return {
       lend: response.data.lendDetail.lend, //标的详情
       borrower: response.data.lendDetail.borrower, //借款人信息
+      lendItemList: responseLendItemList.data.list, //投资记录
+      lendReturnList: responseLendReturnList.data.list, //还款计划
+      lendItemReturnList: [], //回款计划
     }
   },
 
@@ -428,9 +441,40 @@ export default {
 
     //判断登录人的用户类型
     this.fetchUserType()
+
+    //回款计划
+    this.fetchLendItemReturnList()
   },
 
   methods: {
+    commitReturn(lendReturnId) {
+      this.$alert(
+        '<div style="size: 18px;color: red;">您即将前往汇付宝确认还款</div>',
+        '前往汇付宝资金托管平台',
+        {
+          dangerouslyUseHTMLString: true,
+          confirmButtonText: '立即前往',
+          callback: (action) => {
+            if (action === 'confirm') {
+              this.$axios
+                .$post('/api/core/lendReturn/auth/commitReturn/' + lendReturnId)
+                .then((response) => {
+                  document.write(response.data.formStr)
+                })
+            }
+          },
+        }
+      )
+    },
+    //回款计划
+    fetchLendItemReturnList() {
+      this.$axios
+        .$get('/api/core/lendItemReturn/auth/list/' + this.$route.params.id)
+        .then((response) => {
+          this.lendItemReturnList = response.data.list
+        })
+    },
+
     //查询账户余额
     fetchAccount() {
       let userInfo = cookie.get('userInfo')
